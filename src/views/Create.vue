@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Create Task</h1>
-    <b-form @submit.prevent="onSubmit" @reset.prevent="onReset">
+    <b-form @submit.prevent="onSubmit">
       <b-form-group
           id="input-group-1"
           label="Title"
@@ -39,8 +39,7 @@
       <b-form-group label="Deadline">
         <b-form-datepicker v-model="form.deadline"></b-form-datepicker>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button type="submit" variant="primary">Create Task</b-button>
     </b-form>
   </div>
 </template>
@@ -69,10 +68,8 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$store.dispatch('createTask', this.form);
-    },
-    onReset() {
-      console.log('reset')
+      this.$store.dispatch('createTask', {...this.form, status: "active"});
+      this.$router.push('/list')
     },
     getCurrentDate() {
       const today = new Date();
