@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log(this.form)
+      this.$store.dispatch('createTask', this.form);
     },
     onReset() {
       console.log('reset')
