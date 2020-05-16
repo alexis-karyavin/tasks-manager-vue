@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Create from '../views/Create.vue'
-import List from "../views/List";
 
 Vue.use(VueRouter)
 
@@ -17,10 +15,10 @@ Vue.use(VueRouter)
     component: () => import('../views/List.vue')
   },
   {
-    path: '/task',
+    path: '/task/:id',
     name: 'task',
     component: () => import('../views/Task.vue')
-  }
+  },
 ]
 
 const router = new VueRouter({
