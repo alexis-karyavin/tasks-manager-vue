@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     createTask(state, task) {
-      state.tasks.push(task);
+      state.tasks.push({id: state.tasks.length + 1, ...task});
 
       localStorage.setItem('tasks', JSON.stringify(state.tasks));
     }
