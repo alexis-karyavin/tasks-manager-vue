@@ -8,6 +8,9 @@
       :fields="fields"
       v-if="tasks.length"
     >
+      <template v-slot:cell(description)="row">
+        <div class="description" v-html="row.item.description"></div>
+      </template>
       <template v-slot:cell(open)="row">
         <b-button
           variant="success"
@@ -50,6 +53,11 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .description {
+      width: 300px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 </style>
