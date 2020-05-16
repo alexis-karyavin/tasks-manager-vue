@@ -27,14 +27,12 @@
       </b-form-group>
       <b-form-group label="Description">
         <b-form-textarea
-            v-if="form.description"
-            id="textarea"
-            v-model="form.description.text"
-            :state="validateTextArea"
-            placeholder="Enter something..."
-            no-resize
+          id="textarea-default"
+          placeholder="Default textarea"
+          v-model="form.description"
+          :state="validateTextArea"
         ></b-form-textarea>
-        <span class="countSymbols">{{ form.description.text.length }}/{{ form.description.countSym }}</span>
+        <span class="countSymbols">{{ form.description.length }}/{{ maxCountSymbols }}</span>
       </b-form-group>
       <b-form-group label="Deadline">
         <b-form-datepicker v-model="form.deadline"></b-form-datepicker>
@@ -50,20 +48,18 @@ export default {
   name: 'Create',
   data() {
     return {
+      maxCountSymbols: 2048,
       form: {
         title: '',
         tags: [],
-        description: {
-          countSym: 2048,
-          text: ''
-        },
+        description: '',
         deadline: this.getCurrentDate()
       }
     }
   },
   computed: {
     validateTextArea: function() {
-      return this.form.description.text.length < this.form.description.countSym && this.form.description.text.length !== 0;
+      return this.form.description.length < this.maxCountSymbols && this.form.description.length !== 0;
     },
   },
   methods: {
